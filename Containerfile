@@ -15,7 +15,7 @@ FROM quay.io/fedora/fedora-bootc:latest
 # CentOS base images: quay.io/centos-bootc/centos-bootc:stream10
 
 
-COPY --from=ghcr.io/ublue-os/akmods-nvidia:latest / /tmp/akmods-nvidia
+COPY --from=ghcr.io/ublue-os/akmods-nvidia-open:latest / /tmp/akmods-nvidia
 RUN find /tmp/akmods-nvidia
 ## optionally install remove old and install new kernel
 # dnf -y remove --no-autoremove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
