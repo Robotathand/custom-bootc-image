@@ -29,3 +29,11 @@ dnf5 install -y nvim
 dnf5 install -y zsh
 # dnf5 install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 # dnf5 install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:latest / /tmp/akmods-nvidia
+RUN find /tmp/akmods-nvidia
+## optionally install remove old and install new kernel
+# dnf -y remove --no-autoremove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
+## install ublue support package and desired kmod(s)
+RUN dnf install /tmp/rpms/ublue-os/ublue-os-nvidia*.rpm
+RUN dnf install /tmp/rpms/kmods/kmod-nvidia*.rpm
